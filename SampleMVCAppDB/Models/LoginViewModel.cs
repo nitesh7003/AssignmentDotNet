@@ -14,7 +14,7 @@ namespace SampleMVCAppDB.Models
 
         [Required(ErrorMessage = "Role is required")]
         [RegularExpression("User|Admin", ErrorMessage = "Role must be either 'User' or 'Admin'")]
-        public string Role { get; set; } = "User";  // Default role assigned as "User"
+        public string Role { get; set; } = "User";  
 
     }
 }
