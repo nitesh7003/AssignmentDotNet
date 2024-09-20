@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SampleMVCAppDB.Data;
 using SampleMVCAppDB.Models;
@@ -18,12 +18,12 @@ namespace SampleMVCAppDB.Controllers
         public IActionResult List(int page = 1, int pageSize = 10)
         {
             var data = db.Products
-                .OrderBy(p => p.ProductID) // Add ordering for better performance
+                .OrderBy(p => p.ProductID) 
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
-            // Consider passing total count for pagination UI
+         
             var totalCount = db.Products.Count();
             ViewBag.TotalCount = totalCount;
             ViewBag.PageSize = pageSize;
@@ -39,7 +39,7 @@ namespace SampleMVCAppDB.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] // Add anti-forgery token validation
+        [ValidateAntiForgeryToken] 
         public IActionResult Create(Product e)
         {
             if (ModelState.IsValid)
@@ -63,7 +63,7 @@ namespace SampleMVCAppDB.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] // Add anti-forgery token validation
+        [ValidateAntiForgeryToken] 
         public IActionResult Edit(int id, Product e)
         {
             if (ModelState.IsValid)
@@ -97,7 +97,7 @@ namespace SampleMVCAppDB.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken] // Add anti-forgery token validation
+        [ValidateAntiForgeryToken] 
         public IActionResult DeleteConfirmed(int id)
         {
             var product = db.Products.Find(id);
