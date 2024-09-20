@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace SampleMVCAppDB.Models
 {
     public class User
     {
         [Key]
-        public int Id { get; set; }  // Primary key, no validation needed
+        public int Id { get; set; }  
 
         [Required(ErrorMessage = "Username is required")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 50 characters")]
@@ -21,6 +21,6 @@ namespace SampleMVCAppDB.Models
 
         [Required(ErrorMessage = "Role is required")]
         [RegularExpression("User|Admin", ErrorMessage = "Role must be either 'User' or 'Admin'")]
-        public string Role { get; set; } = "User";  // Default role set to "User"
+        public string Role { get; set; } = "User";  
     }
 }
