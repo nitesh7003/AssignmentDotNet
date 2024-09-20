@@ -4,30 +4,29 @@ using SampleMVCAppDB.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
 
-// Configure the DbContext with SQL Server
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("db")));
 
-// Register session services
+
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
-    options.Cookie.HttpOnly = true; // Make cookie HttpOnly
-    options.Cookie.IsEssential = true; // Essential for GDPR compliance
+    options.IdleTimeout = TimeSpan.FromMinutes(30); 
+    options.Cookie.HttpOnly = true; 
+    options.Cookie.IsEssential = true; 
 });
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Authentication/Login"; // Redirect to login if not authenticated
-        options.LogoutPath = "/Authentication/Logout"; // Redirect after logout
+        options.LoginPath = "/Authentication/Login"; 
+        options.LogoutPath = "/Authentication/Logout"; 
     });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -39,9 +38,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Add session middleware
-app.UseSession(); // This enables session handling
-app.UseAuthentication(); // Enable authentication
+app.UseSession(); 
+app.UseAuthentication(); 
 
 
 app.UseAuthorization();
