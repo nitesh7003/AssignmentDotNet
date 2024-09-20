@@ -100,7 +100,6 @@ namespace SampleMVCAppDB.Controllers
                     return View(model);
                 }
 
-                // Create claims for the user
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Username),
@@ -116,7 +115,6 @@ namespace SampleMVCAppDB.Controllers
             return View(model);
         }
 
-        // Logout Action
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
